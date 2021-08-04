@@ -14,6 +14,33 @@ namespace TechJobsOO
 
         // TODO: Add the two necessary constructors.
 
+        public Job()
+        {
+            Id = nextId;
+            nextId++;
+        }
+
+        public Job(string name, Employer employerName, Location location, PositionType jobType, CoreCompetency competency) : this()
+        {
+            Name = name;
+            EmployerName = employerName;
+            EmployerLocation = location;
+            JobType = jobType;
+            JobCoreCompetency = competency;
+        }
+
         // TODO: Generate Equals() and GetHashCode() methods.
+
+        public override bool Equals(object obj)
+        {
+            return obj is Job job &&
+                   Id == job.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id);
+        }
+
     }
 }
