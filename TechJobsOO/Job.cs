@@ -11,7 +11,7 @@ namespace TechJobsOO
         public string Name { get; set; }
         public Employer EmployerName { get; set; }
         public Location EmployerLocation { get; set; }
-        public PositionType JobType { get; set; }
+        public PositionType PositionType { get; set; }
         public CoreCompetency JobCoreCompetency { get; set; }
 
         // TODO: Add the two necessary constructors.
@@ -27,7 +27,7 @@ namespace TechJobsOO
             Name = name;
             EmployerName = employerName;
             EmployerLocation = location;
-            JobType = jobType;
+            PositionType = jobType;
             JobCoreCompetency = competency;
         }
 
@@ -50,7 +50,7 @@ namespace TechJobsOO
             string temp = "";
             PropertyInfo[] properties = this.GetType().GetProperties();
 
-            if(Name == null && EmployerName == null && EmployerLocation == null && JobType == null && JobCoreCompetency == null)
+            if(Name == null && EmployerName == null && EmployerLocation == null && PositionType == null && JobCoreCompetency == null)
             {
                 return "OOPS! This job does not seem to exist.";
             }

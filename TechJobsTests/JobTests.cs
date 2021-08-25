@@ -43,7 +43,7 @@ namespace TechJobsTests
             Assert.IsTrue(test_job3.Name == "Product tester");
             Assert.IsTrue(test_job3.EmployerName == test_employer);
             Assert.IsTrue(test_job3.EmployerLocation == test_location);
-            Assert.IsTrue(test_job3.JobType == test_type);
+            Assert.IsTrue(test_job3.PositionType == test_type);
             Assert.IsTrue(test_job3.JobCoreCompetency == test_comp);
         }
 
@@ -73,7 +73,7 @@ namespace TechJobsTests
             Assert.IsTrue(string3Lines[2].Contains("Name") && string3Lines[2].Contains(test_job3.Name));
             Assert.IsTrue(string3Lines[3].Contains("Employer") && string3Lines[3].Contains(test_job3.EmployerName.Value));
             Assert.IsTrue(string3Lines[4].Contains("Location") && string3Lines[4].Contains(test_job3.EmployerLocation.Value));
-            Assert.IsTrue(string3Lines[5].Contains("Job Type") && string3Lines[5].Contains(test_job3.JobType.Value));
+            Assert.IsTrue(string3Lines[5].Contains("Position Type") && string3Lines[5].Contains(test_job3.PositionType.Value));
             Assert.IsTrue(string3Lines[6].Contains("Core Competency") && string3Lines[6].Contains(test_job3.JobCoreCompetency.Value));
         }
 
