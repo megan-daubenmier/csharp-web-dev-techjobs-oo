@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Reflection;
+
 namespace TechJobsOO
 {
     public class Job
     {
-        public int Id { get; }
+        public int ID { get; }
         private static int nextId = 1;
 
         public string Name { get; set; }
@@ -16,7 +18,7 @@ namespace TechJobsOO
 
         public Job()
         {
-            Id = nextId;
+            ID = nextId;
             nextId++;
         }
 
@@ -34,25 +36,51 @@ namespace TechJobsOO
         public override bool Equals(object obj)
         {
             return obj is Job job &&
-                   Id == job.Id;
+                   ID == job.ID;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id);
+            return HashCode.Combine(ID);
         }
 
         public override string ToString()
         {
-            string jobString = new string("\nID: "+ this.Id);
-            jobString += "\nName: " + this.Name;
-            jobString += "\nEmployer: " + this.EmployerName.Value;
-            jobString += "\nLocation: " + this.EmployerLocation.Value;
-            jobString += "\nPosition Type: " + this.JobType.Value;
-            jobString += "\nCore Competency: " + this.JobCoreCompetency.Value;
-            jobString += "\n";
+            string jobString = "";
+            string temp = "";
+            PropertyInfo[] properties = this.GetType().GetProperties();
 
-            return jobString;
+            if(Name == null && EmployerName == null && EmployerLocation == null && JobType == null && JobCoreCompetency == null)
+            {
+                return "OOPS! This job does not seem to exist.";
+            }
+            else
+            {
+                foreach (PropertyInfo property in properties)
+                {
+                    temp = property.Name;
+                    for (int i = 2; i < temp.Length; i++)
+                    {
+                        if (char.IsUpper(temp[i]))
+                        {
+                            temp = temp.Insert(i, " ");
+                            i++;
+                        }
+                    }
+
+                    if (property.GetValue(this, null) != null && property.GetValue(this, null).ToString() != "")
+                    {
+                        jobString += "\n" + temp + ": " + property.GetValue(this, null);
+                    }
+                    else
+                    {
+                        jobString += "\n" + temp + ": Data not available";
+                    }
+                }
+                jobString += "\n";
+
+                return jobString;
+            }
         }
 
     }
